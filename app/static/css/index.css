@@ -1,3 +1,18 @@
 .navitem{
-    color: #683639!important;
+    background-color: #585a5c!important;
+
+}
+.title a{
+    color: #683639 !important;
+}
+a{
+    text-decoration: none!important;
+    color: white !important;;
+}
+.container-fluid{
+    display: flex!important;
+    flex-wrap: inherit!important;
+    align-items: center!important;
+
+    justify-content: center !important;
 }
