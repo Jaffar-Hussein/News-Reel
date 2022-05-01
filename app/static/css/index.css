@@ -1,9 +1,9 @@
 .navitem{
-    background-color: #585a5c!important;
+    background-color: #3b3b46!important;
 
 }
 .title a{
-    color: #683639 !important;
+    color: #E8F4DC !important;
     margin-left:2vw!important;
 }
 a {
@@ -14,8 +14,8 @@ a {
     margin-left: 9vw !important;
 }
 .container-fluid{
-    display: flex!important;
+    /* display: flex!important;
     flex-wrap: inherit!important;
-    align-items: center!important;
+    align-items: center!important; */
     justify-content: center !important;
 }
