@@ -48,13 +48,13 @@ def get_top_story():
     news_response = json.loads(response.data.decode('utf-8'))
     news_object = None
     
-    if news_object:
-        author=news_object.get('author')
-        title=news_object.get('title')
-        description=news_object.get('description')
-        url=news_object.get('url')
-        publishedAt=news_object.get('publishedAt')
-        urlToImage=news_object.get('urlToImage')
+    if news_response:
+        author=news_response.get('author')
+        title=news_response.get('title')
+        description=news_response.get('description')
+        url=news_response.get('url')
+        publishedAt=news_response.get('publishedAt')
+        urlToImage=news_response.get('urlToImage')
         
     news_object=Article(author,title,description,url,publishedAt,urlToImage)
     
