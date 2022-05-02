@@ -1,9 +1,11 @@
 from distutils.command import config
+from turtle import pu
 from app import app
 import urllib3
 import json
 from .models import articles, news_source
 from datetime import datetime
+import dateutil.parser
 
 # Imports of article class and news source class
 News_Source = news_source.News_Source
@@ -45,7 +47,7 @@ def process_data(news_source):
 
 def get_top_story():
     """
-        Function that gets top story response 
+        Function that gets top story response
 
     """
     top_story = top_story_url.format('us', api_key, 1, 1)
@@ -113,6 +115,8 @@ def articles_process(list_of_articles: list):
         description = i.get('description')
         url = i.get('url')
         publishedAt = i.get('publishedAt')
+        publishedAt=datetime.fromisoformat(publishedAt.replace('Z', '+00:00'))
+        publishedAt=publishedAt.date()
         urlToImage = i.get('urlToImage')
         final_articles.append(
             Article(author, title, description, urlToImage, url, publishedAt))
