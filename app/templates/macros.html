@@ -4,7 +4,29 @@
 <body>
     <div class="container">
         <div class="row row-cols-1 row-cols-md-3 g-4 ">
-            
+
         </div>
     </div>
+    {% endmacro %}
+    {% macro displaytrending(headline) %}
+    {% for trend in headline %}
+    <div class="d-flex">
+
+        <img src="{{trend.url_to_image}}" width="600">
+        <div class="m-5">
+            <strong>
+                <p>{{trend.title}}</p>
+            </strong>
+            <p>{{trend.description}}</p>
+            <div class="d-flex justify-content-between flex-row">
+                <p>{{trend.published_at}}</p>
+                <a href="{{trend.url}}"><p>Read More</p></a>
+
+            </div>
+
+
+        </div>
+    </div>
+    {% endfor %}
+
     {% endmacro %}

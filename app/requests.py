@@ -3,6 +3,7 @@ from app import app
 import urllib3
 import json
 from .models import articles, news_source
+from datetime import datetime
 
 # Imports of article class and news source class
 News_Source = news_source.News_Source
@@ -52,8 +53,8 @@ def get_top_story():
     response = http.request('GET', top_story)
     news_response = json.loads(response.data.decode('utf-8'))
     the_article = news_response['articles']
-    news_object = list(articles_process(the_article))
-    return news_object[0]
+    news_object = articles_process(the_article)
+    return news_object
 
 
 def get_news_sources():

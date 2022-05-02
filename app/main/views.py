@@ -6,6 +6,7 @@ from ..requests import get_top_story,get_articles
 @app.route('/')
 def index():
     trending_news = get_top_story()
+    print(trending_news)
     return render_template('home.html', trending_news=trending_news)
 
 @app.route('/articles')
