@@ -42,7 +42,7 @@ def get_top_story():
         Function that gets top story response 
         
     """
-    top_story='https://newsapi.org/v2/top-headlines?country{}&apiKey={}&page={}&PageSize={}'.format('us',api_key,1,1)
+    top_story='http://newsapi.org/v2/top-headlines?country{}&apiKey={}&page={}&PageSize={}'.format('us',api_key,1,1)
     http=urllib3.PoolManager()
     response=http.request('GET',top_story)
     news_response = json.loads(response.data.decode('utf-8'))
