@@ -10,10 +10,10 @@ Article = articles.Articles
 
 # Imports of Api Key and base url
 
-api_key = app.config('NEWS_APP_API_KEY')
-sources_url = app.config('NEWS_BASE_URL_SOURCES')
-categories_url = app.config('NEWS_BASE_URL_CATEGORIES')
-articles_url = app.config('NEWS_BASE_URL_ARTICLES')
+api_key = app.config['NEWS_APP_API_KEY']
+sources_url = app.config['NEWS_BASE_URL_SOURCES']
+categories_url = app.config['NEWS_BASE_URL_CATEGORIES']
+articles_url = app.config['NEWS_BASE_URL_ARTICLES']
 
 def process_data(news_source):
     """
