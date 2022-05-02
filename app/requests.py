@@ -2,10 +2,10 @@ from distutils.command import config
 from app import app
 import urllib3
 import json
-from .models import articles,news_source
+from .models import articles, news_source
 
 # Imports of article class and news source class
-News_Source  = news_source.News_Source
+News_Source = news_source.News_Source
 Article = articles.Articles
 
 # Imports of Api Key and base url
@@ -14,6 +14,8 @@ api_key = app.config['NEWS_APP_API_KEY']
 sources_url = app.config['NEWS_BASE_URL_SOURCES']
 categories_url = app.config['NEWS_BASE_URL_CATEGORIES']
 articles_url = app.config['NEWS_BASE_URL_ARTICLES']
+top_story_url = app.config['NEWS_BASE_URL_TOP_STORIES']
+
 
 def process_data(news_source):
     """
@@ -27,38 +29,31 @@ def process_data(news_source):
     """
     source_results = []
     for source in news_source:
-        name= source.get('name')
-        url=source.get('url')
-        description= source.get('description')
-        country=source.get('country')
-        category= source.get('category')
-        language= source.get('language')
-        
-        source_object=News_Source(name,url,description,country,category,language)
+        name = source.get('name')
+        url = source.get('url')
+        description = source.get('description')
+        country = source.get('country')
+        category = source.get('category')
+        language = source.get('language')
+
+        source_object = News_Source(
+            name, url, description, country, category, language)
         source_results.append(source_object)
     return source_results
+
+
 def get_top_story():
     """
         Function that gets top story response 
-        
+
     """
-    top_story='http://newsapi.org/v2/top-headlines?country{}&apiKey={}&page={}&PageSize={}'.format('us',api_key,1,1)
-    http=urllib3.PoolManager()
-    response=http.request('GET',top_story)
+    top_story = top_story_url.format('us', api_key, 1, 1)
+    http = urllib3.PoolManager()
+    response = http.request('GET', top_story)
     news_response = json.loads(response.data.decode('utf-8'))
-    news_object = None
-    
-    if news_response:
-        author=news_response.get('author')
-        title=news_response.get('title')
-        description=news_response.get('description')
-        url=news_response.get('url')
-        publishedAt=news_response.get('publishedAt')
-        urlToImage=news_response.get('urlToImage')
-        
-    news_object=Article(author,title,description,url,publishedAt,urlToImage)
-    
-    return news_object
+    the_article = news_response['articles']
+    news_object = list(articles_process(the_article))
+    return news_object[0]
 
 
 def get_news_sources():
@@ -69,17 +64,55 @@ def get_news_sources():
         source: list of news sources
     """
     sources_url.format(api_key)
-    
-    http=urllib3.PoolManager()
-    response=http.request('GET',sources_url)
+
+    http = urllib3.PoolManager()
+    response = http.request('GET', sources_url)
     get_news_response = json.loads(response.data.decode('utf-8'))
     source = {}
 
     if get_news_response['sources']:
-        source_results_list=get_news_response['sources']
-        source=process_data(source_results_list)
+        source_results_list = get_news_response['sources']
+        source = process_data(source_results_list)
     return source
-    
+
+
 def get_articles(source):
-    pass
-        
+    """
+    Takes in a news source and returns all of their articles
+    Args:
+        source (str): The site of the news that is to be queryed
+    """
+    url_article = articles_url.format(source, api_key)
+
+    http = urllib3.PoolManager()
+    r = http.request('GET', url_article)
+    response = json.loads(r.data.decode('utf-8'))
+
+    list_of_articles = []
+    if response:
+        for i in response["articles"]:
+            list_of_articles.append(i)
+
+    article_objects = articles_process(list_of_articles)
+    return article_objects
+
+
+def articles_process(list_of_articles: list):
+    """
+    This distills the list of articles to a form of the articles class
+
+    Args:
+        list_of_articles (list): The list of articles  to be distilled
+    """
+
+    final_articles = []
+    for i in list_of_articles:
+        author = i.get('author')
+        title = i.get('title')
+        description = i.get('description')
+        url = i.get('url')
+        publishedAt = i.get('publishedAt')
+        urlToImage = i.get('urlToImage')
+        final_articles.append(
+            Article(author, title, description, urlToImage, url, publishedAt))
+    return final_articles
