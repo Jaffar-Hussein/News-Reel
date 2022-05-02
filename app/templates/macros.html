@@ -18,9 +18,11 @@
                 <p>{{trend.title}}</p>
             </strong>
             <p>{{trend.description}}</p>
-            <div class="d-flex justify-content-between flex-row">
+            <div class="d-flex justify-content-between flex-row mt-2">
                 <p>{{trend.published_at}}</p>
-                <a class="text-decoration-none text-danger" href="{{trend.url}}"><p>Read More ...</p></a>
+                <a class="text-decoration-none text-danger" href="{{trend.url}}" target="_blank">
+                    <p>Read More ...</p>
+                </a>
 
             </div>
 
@@ -29,4 +31,22 @@
     </div>
     {% endfor %}
 
+    {% endmacro %}
+
+    {% macro displaynewSource(news) %}
+    {% for source in news %}
+    <div class="col-md-4">
+        <div class="card text-white bg-dark mb-3" style="max-width: 30rem;">
+            <div class="card-body">
+
+                <strong>
+                    <h5 class="card-title">{{source.name}}</h5>
+
+                </strong>
+                <p class="card-text">{{source.description}}</p>
+
+            </div>
+        </div>
+    </div>
+    {% endfor %}
     {% endmacro %}

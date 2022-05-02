@@ -20,7 +20,7 @@ articles_url = app.config['NEWS_BASE_URL_ARTICLES']
 top_story_url = app.config['NEWS_BASE_URL_TOP_STORIES']
 
 
-def process_data(news_source):
+def process_data(news_source:list):
     """
     Function  that processes the news source result and transform them to a list of Objects
 
@@ -66,12 +66,12 @@ def get_news_sources():
     Returns:
         source: list of news sources
     """
-    sources_url.format(api_key)
+    news_sources_url=sources_url.format(api_key)
 
     http = urllib3.PoolManager()
-    response = http.request('GET', sources_url)
+    response = http.request('GET',news_sources_url)
     get_news_response = json.loads(response.data.decode('utf-8'))
-    source = {}
+    source = None
 
     if get_news_response['sources']:
         source_results_list = get_news_response['sources']
