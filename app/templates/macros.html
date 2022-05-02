@@ -1,52 +1,63 @@
 <!-- Macro for the News Article -->
-{% macro article(news_article) %}
+{% macro article(news_articles) %}
 
-<body>
-    <div class="container">
-        <div class="row row-cols-1 row-cols-md-3 g-4 ">
-
-        </div>
-    </div>
-    {% endmacro %}
-    {% macro displaytrending(headline) %}
-    {% for trend in headline %}
-    <div class="d-flex">
-
-        <img src="{{trend.url_to_image}}" width="600">
-        <div class="m-5">
-            <strong>
-                <p>{{trend.title}}</p>
-            </strong>
-            <p>{{trend.description}}</p>
-            <div class="d-flex justify-content-between flex-row mt-2">
-                <p>{{trend.published_at}}</p>
-                <a class="text-decoration-none text-danger" href="{{trend.url}}" target="_blank">
-                    <p>Read More ...</p>
-                </a>
-
+<div class="container">
+    <div class="row row-cols-1 row-cols-md-3 g-4 ">
+        {% for article in news_articles %}
+        <div class="col">
+            <div class="card border-white">
+              <img src={{article.url_to_image}}  class="card-img-top" >
+              <div class="card-body px-0 ">
+                <h5 class="card-title">{{article.title}}</h5>
+                <p class="card-text">{{article.description}}</p>
+              </div>
             </div>
+          </div>
+        {% endfor %}
+    </div>
+</div>
+{% endmacro %}
+<!-- Macro for Headline -->
+{% macro displaytrending(headline) %}
+{% for trend in headline %}
+<div class="d-flex">
 
+    <img src="{{trend.url_to_image}}" width="600">
+    <div class="m-5">
+        <strong>
+            <p>{{trend.title}}</p>
+        </strong>
+        <p>{{trend.description}}</p>
+        <div class="d-flex justify-content-between flex-row mt-2">
+            <p>{{trend.published_at}}</p>
+            <a class="text-decoration-none text-danger" href="{{trend.url}}" target="_blank">
+                <p>Read More ...</p>
+            </a>
 
         </div>
+
+
     </div>
-    {% endfor %}
-
-    {% endmacro %}
-
-    {% macro displaynewSource(news) %}
-    {% for source in news %}
-    <div class="col-md-4">
+</div>
+{% endfor %}
+{% endmacro %}
+<!-- Macro for News Sources -->
+{% macro displaynewSource(news) %}
+{% for source in news %}
+<div class="col-md-4">
+    <a href="/sources/{{source.id}}">
         <div class="card text-white bg-dark mb-3" style="max-width: 30rem;">
             <div class="card-body">
-
+    
                 <strong>
                     <h5 class="card-title">{{source.name}}</h5>
-
+    
                 </strong>
                 <p class="card-text">{{source.description}}</p>
-
+    
             </div>
         </div>
-    </div>
-    {% endfor %}
-    {% endmacro %}
+    </a>
+</div>
+{% endfor %}
+{% endmacro %}

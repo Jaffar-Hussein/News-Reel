@@ -5,7 +5,7 @@ import urllib3
 import json
 from .models import articles, news_source
 from datetime import datetime
-import dateutil.parser
+
 
 # Imports of article class and news source class
 News_Source = news_source.News_Source
@@ -38,9 +38,10 @@ def process_data(news_source:list):
         country = source.get('country')
         category = source.get('category')
         language = source.get('language')
+        id = source.get('id')
 
         source_object = News_Source(
-            name, url, description, country, category, language)
+            name, url, description, country, category, language,id)
         source_results.append(source_object)
     return source_results
 
@@ -115,9 +116,14 @@ def articles_process(list_of_articles: list):
         description = i.get('description')
         url = i.get('url')
         publishedAt = i.get('publishedAt')
-        publishedAt=datetime.fromisoformat(publishedAt.replace('Z', '+00:00'))
-        publishedAt=publishedAt.date()
+        publishedAt = publishedAt[:10]
+        publishedAt = datetime.strptime(publishedAt,"%Y-%m-%d")
+        # publishedAt=datetime.fromisoformat(publishedAt.replace('Z', '+00:00'))
+        publishedAt=datetime.date(publishedAt)
+        # publishedAt = publishedAt.strftime('%Y-%m-%d')
         urlToImage = i.get('urlToImage')
-        final_articles.append(
-            Article(author, title, description, urlToImage, url, publishedAt))
+        if urlToImage:
+            
+            final_articles.append(
+                Article(author, title, description, urlToImage, url, publishedAt))
     return final_articles

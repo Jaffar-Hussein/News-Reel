@@ -10,7 +10,7 @@ def index():
     return render_template('home.html', trending_news=trending_news, news_sources=news_sources)
 
 
-@app.route('/articles')
-def articles():
-    reuteres = get_articles('Reuters')
-    return render_template('articles.html', reuteres=reuteres)
+@app.route('/sources/<site>')
+def articles(site):
+    articles_news = get_articles(site)
+    return render_template('articles.html', articles_news=articles_news)

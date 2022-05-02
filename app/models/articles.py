@@ -11,3 +11,4 @@ class Articles:
         self.url_to_image = url_to_image
         
         
+        

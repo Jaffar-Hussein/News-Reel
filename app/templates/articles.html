@@ -1,5 +1,6 @@
+{% import 'macros.html' as macro %}
 {% extends 'base.html' %}
 {% block content %}
-    <p>{{reuteres[0].__dict__}}</p>
-    <p>{{reuteres[2].__dict__}}</p>  <p>{{reuteres[1].__dict__}}</p>
+    {{macro.article(articles_news)}}
+    
 {% endblock %}
