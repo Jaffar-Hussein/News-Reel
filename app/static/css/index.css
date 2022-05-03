@@ -4,9 +4,15 @@
 }
 body{
     background-color: #f1faee ;
+    font-family: 'Libre Franklin', sans-serif;
+    
+}
+
+.imagee img{
+    height:50vh;
 }
 .cards-body{
-    background-color: #f1faee !important;
+    background-color: #f1f9ef !important;
 }
 .cards{
     border-color: #f1faee !important;
@@ -33,10 +39,12 @@ nav a {
 }
 .textc{
     /* color: #E8F4DC; */
+    background-color: #1d3557!important;
+    color: white;
 }
 .cards {
     box-shadow: 0px 5px 10px 0px rgba(241, 250, 238, 0.5);
-    border-color: rgba(241, 250, 238, 0.5);
+    border-color: rgba(255,255,255, 0.5);
   }
 .card:hover {
     transform: translateY(-3px);
