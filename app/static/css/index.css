@@ -1,6 +1,12 @@
 .navitem{
-    background-color: #3b3b46!important;
+    background-color: #1d3557!important;
 
+}
+body{
+    background-color: #f1faee;
+}
+.newscard{
+    background-color: #457b9d;
 }
 .title a{
     color: #E8F4DC !important;
