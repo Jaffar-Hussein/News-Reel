@@ -1,5 +1,3 @@
-from turtle import title
-from unicodedata import category
 from app import app
 from flask import render_template
 from ..requests import get_top_story, get_articles, get_news_sources, categories
