@@ -9,7 +9,8 @@ from ..requests import get_top_story, get_articles, get_news_sources, categories
 def index():
     trending_news = get_top_story()
     news_sources = get_news_sources()
-    return render_template('home.html', trending_news=trending_news, news_sources=news_sources)
+    title_head = "HOME"
+    return render_template('home.html', trending_news=trending_news, news_sources=news_sources,title_head=title_head)
 
 
 @app.route('/sources/<site>')
