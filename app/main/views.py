@@ -21,6 +21,6 @@ def articles(site):
 
 @app.route('/categories/<categorie>')
 def cat(categorie):
-    title_head = categorie.upper()
+    title_head = categorie.upper() + " NEWS"
     articles_news = categories(categorie)
     return render_template('articles.html', articles_news=articles_news,title_head=title_head)
