@@ -4,7 +4,7 @@ class Config:
     """
     NEWS_BASE_URL_SOURCES = 'http://newsapi.org/v2/top-headlines/sources?apikey={}&language=en'
     NEWS_BASE_URL_ARTICLES = 'http://newsapi.org/v2/top-headlines?sources={}&apikey={}&language=en'
-    NEWS_BASE_URL_CATEGORIES = 'http://newsapi.org/v2/top-headlines?categories={}&apikey={}&language=en'
+    NEWS_BASE_URL_CATEGORIES = 'http://newsapi.org/v2/top-headlines?category={}&apikey={}&language=en'
     NEWS_BASE_URL_TOP_STORIES = 'http://newsapi.org/v2/top-headlines?country={}&apiKey={}&page={}&PageSize={}&language=en'
 
 

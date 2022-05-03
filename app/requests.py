@@ -100,6 +100,26 @@ def get_articles(source):
     article_objects = articles_process(list_of_articles)
     return article_objects
 
+def categories(category):
+    """
+    Takes in a news category and returns all of their articles
+    Args:
+        source (str): The category of the news that is to be queryed
+    """
+    url_article = categories_url.format(category, api_key)
+
+    http = urllib3.PoolManager()
+    r = http.request('GET', url_article)
+    response = json.loads(r.data.decode('utf-8'))
+
+    list_of_articles = []
+    if response:
+        for i in response["articles"]:
+            list_of_articles.append(i)
+
+    article_objects = articles_process(list_of_articles)
+    return article_objects
+
 
 def articles_process(list_of_articles: list):
     """
