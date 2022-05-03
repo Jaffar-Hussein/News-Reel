@@ -1,18 +1,18 @@
 <!-- Macro for the News Article -->
 {% macro article(news_articles) %}
-
+<p class="h5 text-center">{{title_head}}</p>
 <div class="container">
     <div class="row row-cols-1 row-cols-md-3 g-4 ">
         {% for article in news_articles %}
         <div class="col">
             <div class="card border-white">
-              <img src={{article.url_to_image}}  class="card-img-top" alt="News Image">
-              <div class="card-body px-0 ">
-                <h5 class="card-title">{{article.title}}</h5>
-                <p class="card-text">{{article.description}}</p>
-              </div>
+                <img src={{article.url_to_image}} class="card-img-top" alt="News Image">
+                <div class="card-body px-0 ">
+                    <h5 class="card-title">{{article.title}}</h5>
+                    <p class="card-text">{{article.description}}</p>
+                </div>
             </div>
-          </div>
+        </div>
         {% endfor %}
     </div>
 </div>
@@ -48,13 +48,13 @@
     <a href="/sources/{{source.id}}" class="text-decoration-none">
         <div class="card text-white bg-dark mb-3" style="max-width: 30rem;">
             <div class="card-body">
-    
+
                 <strong>
                     <h5 class="card-title">{{source.name}}</h5>
-    
+
                 </strong>
                 <p class="card-text">{{source.description}}</p>
-    
+
             </div>
         </div>
     </a>
