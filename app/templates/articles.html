@@ -1,6 +1,8 @@
 {% import 'macros.html' as macro %}
 {% extends 'base.html' %}
 {% block content %}
-    {{macro.article(articles_news)}}
-    
+<p class="h3 text-center">{{title_head}}</p>
+
+{{macro.article(articles_news)}}
+
 {% endblock %}

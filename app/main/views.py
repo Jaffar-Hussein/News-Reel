@@ -1,3 +1,4 @@
+from turtle import title
 from unicodedata import category
 from app import app
 from flask import render_template
@@ -14,13 +15,12 @@ def index():
 @app.route('/sources/<site>')
 def articles(site):
     articles_news = get_articles(site)
-    
-    
-    return render_template('articles.html', articles_news=articles_news,title_head="title")
+    title_head = site.upper() 
+    return render_template('articles.html', articles_news=articles_news,title_head=title_head)
 
 
 @app.route('/categories/<categorie>')
 def cat(categorie):
-    
+    title_head = categorie.upper()
     articles_news = categories(categorie)
-    return render_template('articles.html', articles_news=articles_news,title_head="title")
+    return render_template('articles.html', articles_news=articles_news,title_head=title_head)
