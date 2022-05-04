@@ -1,3 +1,4 @@
+import os
 class Config:
     """
     This are the general configurations for the projects
@@ -6,7 +7,7 @@ class Config:
     NEWS_BASE_URL_ARTICLES = 'http://newsapi.org/v2/top-headlines?sources={}&apikey={}&language=en'
     NEWS_BASE_URL_CATEGORIES = 'http://newsapi.org/v2/top-headlines?category={}&apikey={}&language=en'
     NEWS_BASE_URL_TOP_STORIES = 'http://newsapi.org/v2/top-headlines?country={}&apiKey={}&page={}&PageSize={}&language=en'
-
+    NEWS_APP_API_KEY = os.environ.get('NEWS_APP_API_KEY')
 
 class DevConfig(Config):
     """
@@ -25,3 +26,9 @@ class ProdConfig(Config):
     Args:
         Config : The main configuration
     """
+
+
+config_options = {
+'development':DevConfig,
+'production':ProdConfig
+}

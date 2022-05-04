@@ -1,6 +1,10 @@
+from flask_script import Manager,Server
+from app import create_app
+app = create_app('development')
 
-from app import app
+manager = Manager(app)
+manager.add_command('server',Server)
 
 if __name__== '__main__':
-    app.run(debug=True,port=5005)
+    manager.run()
     

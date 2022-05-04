@@ -1,7 +1,7 @@
-from app import app
+from . import main
 from flask import render_template
 
-@app.errorhandler(404)
+@main.app_errorhandler(404)
 def page_not_found(e):
     return render_template('error.html'),404
     
